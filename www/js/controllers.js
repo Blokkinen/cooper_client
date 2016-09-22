@@ -1,15 +1,6 @@
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
-  // Form data for the login modal
   $scope.loginData = {};
 
   // Create the login modal that we will use later
@@ -39,4 +30,18 @@ angular.module('starter.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
+})
+
+  .controller('TestController', function($scope) {
+    $scope.data = {};
+    $scope.calculateCooper = function() {
+      var person = new Person({
+        gender: $scope.data.gender,
+        age: $scope.data.age,
+        distance: $scope.data.distance
+      });
+      person.result($scope.data);
+      $scope.person = person;
+      console.log($scope.person);
+    };
 });
