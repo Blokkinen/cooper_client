@@ -1,6 +1,11 @@
-angular.module('starter.controllers', [])
+var app = angular.module('starter.controllers', []);
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+app.controller('AppCtrl', function($rootScope,
+                                $scope,
+                                $ionicModal,
+                                $timeout,
+                                $auth,
+                                $ionicLoading) {
   $scope.loginData = {};
 
   // Create the login modal that we will use later
@@ -23,25 +28,39 @@ angular.module('starter.controllers', [])
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     //console.log('Doing login', $scope.loginData);
-    $auth.submitLogin($scope.loginData)
+  $ionicLoading.show({
+    template: 'Logging in...'
+  });
+  $auth.submitLogin($scope.loginData)
     .then(function (resp) {
-      // handle success response
-      $scope.closeLogin();
+            // handle success response
+    $ionicLoading.hide();
+    $scope.closeLogin();
     })
     .catch(function (error) {
-      // handle error response
+      $ionicLoading.hide();
       $scope.errorMessage = error;
     });
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
   };
-})
+    //.catch(function (error) {
+      // handle error response
+      //$scope.errorMessage = error;
 
-  .controller('TestController', function($scope) {
+  $rootScope.$on('auth:login-success', function(ev, user) {
+    $scope.currentUser = user;
+    });
+  });
+
+
+//     // Simulate a login delay. Remove this and replace with your login
+//     // code if using a login system
+//     $timeout(function() {
+//       $scope.closeLogin();
+//     }, 1000);
+//   };
+// })
+
+  app.controller('TestController', function($scope) {
     $scope.gender = ['Male', 'Female'];
     $scope.ageValues = {
       min: 13,

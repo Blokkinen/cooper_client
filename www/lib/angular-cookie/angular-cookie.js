@@ -8,7 +8,7 @@ angular.module('ipCookie', ['ng']).
 factory('ipCookie', ['$document',
   function ($document) {
     'use strict';
-      
+
     function tryDecodeURIComponent(value) {
         try {
             return decodeURIComponent(value);
@@ -44,7 +44,7 @@ factory('ipCookie', ['$document',
             // Trying to delete a cookie; set a date far in the past
             if (expiresFor === -1) {
               options.expires = new Date('Thu, 01 Jan 1970 00:00:00 GMT');
-              // A new 
+              // A new
             } else if (options.expirationUnit !== undefined) {
               if (options.expirationUnit === 'hours') {
                 options.expires.setHours(options.expires.getHours() + expiresFor);
