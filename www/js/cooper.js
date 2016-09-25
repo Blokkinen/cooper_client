@@ -1,6 +1,6 @@
 function CooperTest() {
 
-}
+
 
     CooperTest.prototype.calculate = function(obj) {
       var age = obj.age;
