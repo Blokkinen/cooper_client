@@ -1,5 +1,5 @@
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ng-token-auth', 'ngResource'])
-    .constant('API_URL', 'https://vb-cooper-api.herokuapp.com/api/v1')
+  .constant('API_URL', 'https://vb-cooper-api.herokuapp.com/api/v1')
 
   .config(function ($authProvider, API_URL) {
     $authProvider.configure({
@@ -12,7 +12,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-
     }
     if (window.StatusBar) {
       StatusBar.styleDefault();
@@ -23,7 +22,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-    .state('app', {
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
@@ -39,7 +38,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
 
-    .state('app.test', {
+  .state('app.test', {
     url: '/test',
     views: {
       'menuContent': {
@@ -50,17 +49,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   })
 
   .state('app.data', {
-  url: '/data',
-  params: {
-    savedDataCollection: {}
-  },
-  views: {
-    'menuContent': {
-      templateUrl: 'templates/test/data.html',
-      controller: 'DataCtrl'
+    url: '/data',
+    params: {
+      savedDataCollection: {}
+    },
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/test/data.html',
+        controller: 'DataCtrl'
+      }
     }
-  }
-});
+  });
 
   $urlRouterProvider.otherwise('/app/about');
 });
